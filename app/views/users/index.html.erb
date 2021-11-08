@@ -1,1 +1,20 @@
 <h1>Show all users</h1>
+<ul class="listContainer" id = "users">
+   <% @users.each do |u| %>
+   <li class="userContainer">
+      <%= image_tag 'user-profile.png',
+            alt: 'user',
+            class: 'userImg' %>
+    <%= link_to ({:action => 'show', :id => u.id}) do %>
+    <div class="dataContainer">
+      <h2>
+        <%= u.name%>
+      </h2>
+      <p>
+        Number of posts <%= u.post_counter%>
+      </p>
+    </div>
+    <% end %>
+   </li>
+   <% end %>
+</ul>
