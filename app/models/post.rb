@@ -3,7 +3,11 @@ class Post < ApplicationRecord
   has_many :comments
   has_many :likes
 
-  def take3
-    comments.order(created_at: :desc).limit(3)
+  def take_five_recent
+    comments.order(created_at: :desc).limit(5)
+  end
+
+  def update_user_post_counter
+    author.update(post_counter: author.posts.count)
   end
 end
