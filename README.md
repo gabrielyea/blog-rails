@@ -11,15 +11,18 @@ To get a local copy up and running follow these simple example steps.
 - Open a terminal
 - Copy this code : ```git clone <this repo>```
 - Run the program with this code : ```bundle install```
-- before running ```rails server``` you must run a few more commands: first run ```yarn install --check-files```
-- Then run ```rails db:create```, ```rails db:migrate```
-- now you can run ```rails server```
+- Before running ```rails server``` you must run a few more commands: first run ```yarn install --check-files```
+- Run `rails db:setup` This will seed the database.
 - Stop the program with: "Ctrl + C" (Windows or Linux) or "Command + C"(Apple)
 
 ## Open app in browser
 
 - When the program is running go to your browser.
 - put: localhost:3000/
+
+## Troubleshooting
+
+If you encounter any issues with webpacker, try to run `bundle exec rake webpacker:install`
 
 ## Tests
 - To run the tests just type the following command `bundle exe rspec`
