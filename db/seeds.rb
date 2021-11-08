@@ -1,6 +1,6 @@
 require 'faker'
 
-(1..20).each do |id|
+(1..1).each do |id|
   User.create!(
       id: id, 
       name: Faker::Name.name,
@@ -10,10 +10,10 @@ require 'faker'
   )
 end
 
-(1..10).each do |id|
+(1..1).each do |id|
   Post.create(
       id: id,
-      author_id: rand(1..20),
+      author_id: rand(1..1),
       title: Faker::Book.title,
       text: Faker::Lorem.paragraph,
       comments_counter: 0,
@@ -21,19 +21,19 @@ end
   )
 end
 
-(1..10).each do |id|
+(1..1).each do |id|
   Comment.create!(
       id: id,
-      post_id: rand(1..10),
-      author_id: rand(1..20),
+      post_id: rand(1..1),
+      author_id: rand(1..1),
       text: Faker::Lorem.paragraph,
   )
 end
 
-(1..10).each do |id|
+(1..1).each do |id|
   Like.create!(
       id: id,
-      author_id: rand(1..20),
-      post_id: rand(1..10),
+      author_id: rand(1..1),
+      post_id: rand(1..1),
   )
 end
