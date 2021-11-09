@@ -1,5 +1,5 @@
 <section class="showView">
-  <%= render 'user_card', user: @user %>
+  <%= render 'shared/user_card', user: @user %>
   
   <ul class="postsList">
     <li class="bio">
@@ -11,13 +11,21 @@
       <% @posts.each_with_index do |p, i| %>
         <li class="post">
           <p>
-            Post <%=i + 1%>
+            <%= p.title %>
           </p>
           <p>
             <%= p.text %>
           </p>
+          <div class=commentsLikes>
+            <p>
+              Comments: <%= p.comments_counter%>
+            </p>
+            <p>
+              Likes: <%= p.likes_counter%>
+            </p>
+          </div>
         </li>
       <% end %>
-      <%= button_to "Show all posts", users_path(@user), method: 'put' %>
+      <%= button_to "Show all", user_posts_path(@user.id), :method => :get %>
   </ul>
 </section>
