@@ -1,1 +1,13 @@
-<h1>List of all posts for a single users</h1>
+<section class="showView">
+  <ul class="postsList">
+   <%= render 'shared/user_card', user: @user %>
+      <% @posts.each do |p| %>
+        <%= link_to (user_post_path(p.author, p)) do %>
+          <li>
+            <%= render 'shared/post_card', post: p, max: 5 %>
+          </li>
+        <% end %>
+      <%end%>
+  </ul>
+   <%= button_to "Go back", user_path(@user.id), :method => :get %>
+</section>
