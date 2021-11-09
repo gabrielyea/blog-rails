@@ -2,9 +2,18 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-ul {
+.post {
+  border: black 1px solid;
+  border-radius: 20px;
+  padding: 2em;
 
-  .post{
+  div {
+    padding: 0;
+  }
+}
+
+ul {
+  .post {
     div {
       padding: 0;
     }
@@ -16,9 +25,8 @@ ul {
     padding: 2em;
     width: 100%;
   }
-
-
 }
+
 .commentsLikes {
   display: flex;
   flex-direction: row;
@@ -31,14 +39,5 @@ ul {
     width: 100%;
     text-decoration: none;
     color: inherit;
-  }
-}
-
-.post{
-  border: black 1px solid;
-  border-radius: 20px;
-  padding: 2em;
-  div {
-    padding: 0;
   }
 }
