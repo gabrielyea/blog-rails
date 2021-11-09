@@ -1,1 +1,23 @@
-<h1>Show a single user</h1>
+<section class="showView">
+  <%= render 'user_card', user: @user %>
+  
+  <ul class="postsList">
+    <li class="bio">
+      <h2> Bio </h2>
+      <p>
+        <%= @user.bio %>
+      </p>
+    </li>
+      <% @posts.each_with_index do |p, i| %>
+        <li class="post">
+          <p>
+            Post <%=i + 1%>
+          </p>
+          <p>
+            <%= p.text %>
+          </p>
+        </li>
+      <% end %>
+      <%= button_to "Show all posts", users_path(@user), method: 'put' %>
+  </ul>
+</section>
