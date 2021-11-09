@@ -6,5 +6,6 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.take_three_recent
+    @number = params[:number] unless params[:limit].nil?
   end
 end
