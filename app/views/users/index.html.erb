@@ -2,7 +2,7 @@
 <ul class="listContainer" id = "users">
    <% @users.each do |u| %>
     <li>
-      <%= render 'user_card', user: u %>
+      <%= render 'shared/user_card', user: u %>
     </li>
    <% end %>
 </ul>
