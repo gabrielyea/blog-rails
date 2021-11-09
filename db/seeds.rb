@@ -24,7 +24,7 @@ end
 (1..100).each do |id|
   Comment.create!(
       id: id,
-      post_id: rand(1..10),
+      post_id: rand(1..100),
       author_id: rand(1..20),
       text: Faker::Lorem.paragraph,
   )
@@ -34,7 +34,7 @@ end
   Like.create!(
       id: id,
       author_id: rand(1..20),
-      post_id: rand(1..10),
+      post_id: rand(1..100),
   )
 end
 
