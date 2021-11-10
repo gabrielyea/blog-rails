@@ -9,6 +9,10 @@ class Post < ApplicationRecord
     comments.order(created_at: :desc).limit(5)
   end
 
+  def show_all
+    comments
+  end
+
   private
 
   def update_user_post_counter
