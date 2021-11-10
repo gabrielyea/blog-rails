@@ -15,7 +15,7 @@
       </div>
       <% if post.comments.count > 0 %>
         <ul>
-        <% post.comments.take(max).each do |c| %>
+        <% post.send(callback).each do |c| %>
           <li>
             <%= c.text %>
           </li>
