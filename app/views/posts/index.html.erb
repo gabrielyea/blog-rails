@@ -4,7 +4,7 @@
       <% @posts.each do |p| %>
         <%= link_to (user_post_path(p.author, p)) do %>
           <li>
-            <%= render 'shared/post_card', post: p, max: 5 %>
+            <%= render 'shared/post_card', post: p, callback: :take_five_recent %>
           </li>
         <% end %>
       <%end%>
