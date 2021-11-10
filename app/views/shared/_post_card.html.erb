@@ -1,0 +1,25 @@
+  <div class="post">
+    <p>
+      <%= post.title %>
+    </p>
+    <p>
+      <%= post.text %>
+    </p>
+      <div class=commentsLikes>
+        <p>
+          Comments: <%= post.comments_counter%>
+        </p>
+        <p>
+          Likes: <%= post.likes_counter%>
+        </p>
+      </div>
+      <% if post.comments.count > 0 %>
+        <ul>
+        <% post.send(callback).each do |c| %>
+          <li>
+            <%= c.text %>
+          </li>
+        <% end %>
+        </ul>
+      <% end %>
+  </div>

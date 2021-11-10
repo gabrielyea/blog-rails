@@ -1,1 +1,31 @@
-<h1>Show a single user</h1>
+<section class="showView">
+  <%= render 'shared/user_card', user: @user %>
+  
+  <ul class="postsList">
+    <li class="bio">
+      <h2> Bio </h2>
+      <p>
+        <%= @user.bio %>
+      </p>
+    </li>
+      <% @posts.each_with_index do |p, i| %>
+        <li class="post">
+          <p>
+            <%= p.title %>
+          </p>
+          <p>
+            <%= p.text %>
+          </p>
+          <div class=commentsLikes>
+            <p>
+              Comments: <%= p.comments_counter%>
+            </p>
+            <p>
+              Likes: <%= p.likes_counter%>
+            </p>
+          </div>
+        </li>
+      <% end %>
+      <%= button_to "Show all", user_posts_path(@user.id), :method => :get %>
+  </ul>
+</section>

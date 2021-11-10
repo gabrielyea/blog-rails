@@ -1,0 +1,15 @@
+<div class="user">
+      <%= image_tag 'user-profile.png',
+            alt: 'user',
+            class: 'userImg' %>
+    <%= link_to (user_path(user)) do %>
+    <div class="dataContainer">
+      <h2>
+        <%= user.name%>
+      </h2>
+      <p>
+        Number of posts <%= user.post_counter%>
+      </p>
+    </div>
+    <% end %>
+</div>
