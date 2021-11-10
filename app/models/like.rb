@@ -2,7 +2,7 @@ class Like < ApplicationRecord
   belongs_to :author, class_name: 'User'
   belongs_to :post
 
-  after_commit :update_post_likes_counter, on: :update
+  after_save :update_post_likes_counter
 
   private
 
