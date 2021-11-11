@@ -1,4 +1,5 @@
 <section class="showView">
+  <%= render 'shared/user_card', user: @user %>
   <%= render 'shared/post_card', post: @post, callback: :show_all%>
   <%= render 'shared/add_comment' %>
 </section>

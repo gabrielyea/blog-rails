@@ -9,9 +9,7 @@
         <p>
           Comments: <%= post.comments_counter%>
         </p>
-        <p>
-          Likes: <%= post.likes_counter%>
-        </p>
+         <%= render 'shared/add_like', post: post %>
       </div>
       <% if post.comments.count > 0 %>
         <ul>
