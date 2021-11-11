@@ -32,12 +32,43 @@ ul {
   flex-direction: row;
   gap: 1em;
   justify-content: flex-end;
+
+  .like-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    .button_to {
+      input {
+        border: none;
+        background: transparent;
+        transform: scale(1);
+        transition: all 0.1s ease-in-out;
+        border-radius: 20px;
+      }
+
+      &:hover {
+        transition: all 0.1s ease-in-out;
+        transform: scale(1.1);
+        background-color: antiquewhite;
+      }
+
+      &:active {
+        transition: all 0.1s ease-in-out;
+        transform: scale(0.8);
+        background-color: grey;
+      }
+    }
+  }
 }
 
 .postsList {
   a {
-    width: 100%;
-    text-decoration: none;
     color: inherit;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+    display: contents;
   }
 }
