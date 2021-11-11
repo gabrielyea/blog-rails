@@ -15,8 +15,11 @@ class PostsController < ApplicationController
   end
 
   def create
-    @user = current_user
+    cu = current_user
+    @user = User.find(params[:user_id])
     @post = @user.posts.new(params.require(:post).permit(:title, :text))
+    @post.author = cu
+
     if @post.save
       redirect_to user_post_path(@user, @post)
     else
@@ -25,9 +28,9 @@ class PostsController < ApplicationController
   end
 
   def like
-    user = current_user
+    user = User.find(params[:user_id])
     post = user.posts.find(params[:id])
-    Like.create(author_id: user.id, post_id: post.id)
+    Like.create(author_id: current_user.id, post_id: post.id)
     redirect_to user_post_path(user, post)
   end
 end
