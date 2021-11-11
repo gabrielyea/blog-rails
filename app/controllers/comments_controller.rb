@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   def create
     @user = current_user
-    this_user = User.find(params[:user_id])
+    this_user = current_user
     this_post = this_user.posts.find(params[:post_id])
     @comment = Comment.new((params.require(:comment).permit(:text)))
     @comment.post = this_post
