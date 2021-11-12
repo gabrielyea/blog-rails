@@ -7,6 +7,6 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'new', to: 'posts#new'
+  get 'new', to: 'posts#new', as: 'new'
   put '/post/:id/like', to: 'likes#create', as: 'like'
 end

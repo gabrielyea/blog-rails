@@ -23,8 +23,8 @@ class PostsController < ApplicationController
       flash[:notice] = 'Post saved!!'
       redirect_to user_post_path(cu, @post)
     else
-      flash[:error] = @post.error.messages
-      render :new
+      flash[:error] = @post.errors.full_messages[0]
+      redirect_to new_path
     end
   end
 end
