@@ -19,7 +19,6 @@ class PostsController < ApplicationController
     @post = cu.posts.new(params.require(:post).permit(:title, :text))
     @post.comments_counter = 0
     @post.likes_counter = 0
-    @post.author = cu
 
     if @post.save
       flash[:notice] = 'Post saved!'
