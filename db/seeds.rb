@@ -48,3 +48,7 @@ Post.all.each do |p|
   p.likes_counter = p.likes.count
   p.save
 end
+
+ActiveRecord::Base.connection.tables.each do |t|
+  ActiveRecord::Base.connection.reset_pk_sequence!(t)
+end

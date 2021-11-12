@@ -1,0 +1,4 @@
+<div class="like-btn">
+  <%= button_to "Like", like_path(user_id: @user, id: post), method: "put" %>
+  <%= post.likes_counter %>
+</div>

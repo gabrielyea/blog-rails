@@ -9,22 +9,11 @@
       </p>
     </li>
       <% @posts.each_with_index do |p, i| %>
-        <li class="post">
-          <p>
-            <%= p.title %>
-          </p>
-          <p>
-            <%= p.text %>
-          </p>
-          <div class=commentsLikes>
-            <p>
-              Comments: <%= p.comments_counter%>
-            </p>
-            <p>
-              Likes: <%= p.likes_counter%>
-            </p>
-          </div>
+      <%= link_to (user_post_path(p.author, p)) do %>
+        <li>
+          <%= render 'shared/post_card', post: p, callback: :take_five_recent%>
         </li>
+        <% end %>
       <% end %>
       <%= button_to "Show all", user_posts_path(@user.id), :method => :get %>
   </ul>

@@ -1,0 +1,10 @@
+<%= form_with model: [@user, @post, @post.comments.build] do |f| %>
+  <div>
+    <%= f.label :text %><br>
+    <%= f.text_field :text, 
+        placeholder: "",
+        required: true 
+    %>
+  </div>
+  <%= f.submit "Add comment" %>
+<% end %>
