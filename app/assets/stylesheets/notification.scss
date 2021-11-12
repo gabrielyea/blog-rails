@@ -11,18 +11,21 @@
   box-shadow: 10px 10px 10px rgb(196, 196, 196);
 
   @keyframes mymove {
-    0%   {
-      right: -20%; background: rgb(140, 239, 252);
+    0% {
+      right: -20%;
+      background: rgb(140, 239, 252);
       filter: opacity(1);
     }
+
     80% {
-      right: 20%; background: rgb(130, 252, 136);
+      right: 20%;
+      background: rgb(130, 252, 136);
       filter: opacity(1);
     }
+
     100% {
       right: 20%;
       filter: opacity(0);
     }
   }
 }
-
