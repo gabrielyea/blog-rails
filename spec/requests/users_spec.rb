@@ -6,24 +6,24 @@ RSpec.describe 'Users', type: :request do
                              photo: 'link',
                              bio: 'bla bla bla bla',
                              post_counter: 0)
-  end
-  describe 'GET /index' do
-    before { get users_path }
-    it 'is a success' do
-      expect(response).to have_http_status(:ok)
+    describe 'GET /index' do
+      before { get users_path }
+      it 'is a success' do
+        expect(response).to have_http_status(:ok)
+      end
+      it "renders 'index' template" do
+        expect(response).to render_template('index')
+      end
     end
-    it "renders 'index' template" do
-      expect(response).to render_template('index')
-    end
-  end
 
-  describe 'GET /index/id' do
-    before { get user_path(@test_user) }
-    it 'is a success' do
-      expect(response).to have_http_status(:ok)
-    end
-    it "renders 'show' template" do
-      expect(response).to render_template('show')
+    describe 'GET /index/id' do
+      before { get user_path(@test_user) }
+      it 'is a success' do
+        expect(response).to have_http_status(:ok)
+      end
+      it "renders 'show' template" do
+        expect(response).to render_template('show')
+      end
     end
   end
 end
