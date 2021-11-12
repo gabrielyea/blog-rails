@@ -20,7 +20,7 @@ class PostsController < ApplicationController
     @post.likes_counter = 0
 
     if @post.save
-      flash[:notice] = 'Post saved!'
+      flash[:notice] = 'Post saved!!'
       redirect_to user_post_path(cu, @post)
     else
       flash[:error] = @post.error.messages
