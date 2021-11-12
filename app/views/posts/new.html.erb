@@ -13,3 +13,6 @@
   <%= f.submit "Create a post" %>
 
 <% end %>
+<% flash.each do |type, message| %>
+    <div class="notification"> <%= message %> </div>
+<% end %>
