@@ -14,4 +14,6 @@
   <%= f.submit "Create a post" %>
 
 <% end %>
-</section>
+<% flash.each do |type, message| %>
+    <div class="notification"> <%= message %> </div>
+<% end %>

@@ -8,7 +8,7 @@
         <%= @user.bio %>
       </p>
     </li>
-      <% @posts.each_with_index do |p, i| %>
+      <% @posts.includes([:author]).each do |p| %>
       <%= link_to (user_post_path(p.author, p)) do %>
         <li>
           <%= render 'shared/post_card', post: p, callback: :take_five_recent%>
