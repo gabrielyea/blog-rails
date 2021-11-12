@@ -16,13 +16,16 @@ class PostsController < ApplicationController
 
   def create
     cu = current_user
-    @user = User.find(params[:user_id])
-    @post = @user.posts.new(params.require(:post).permit(:title, :text))
+    @post = cu.posts.new(params.require(:post).permit(:title, :text))
+    @post.comments_counter = 0
+    @post.likes_counter = 0
     @post.author = cu
 
     if @post.save
-      redirect_to user_post_path(@user, @post)
+      flash[:notice] = 'Post saved!'
+      redirect_to user_post_path(cu, @post)
     else
+      flash[:error] = @post.error.messages
       render :new
     end
   end

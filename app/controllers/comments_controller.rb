@@ -7,6 +7,11 @@ class CommentsController < ApplicationController
     @comment.post = this_post
     @comment.author = cu
 
-    redirect_to user_post_path(this_user, this_post) if @comment.save
+    if @comment.save
+      flash[:notice] = 'Comment saved!'
+      redirect_to user_post_path(this_user, this_post)
+    else
+      flash[:error] = @comment.errors.messages
+    end
   end
 end
