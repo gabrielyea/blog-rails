@@ -1,0 +1,17 @@
+<ul class="navBar">
+
+<%= link_to new_user_registration_path do %>
+  <% unless user_signed_in?  %>
+    <li> Login </li>
+  <% end %>
+<% end %>
+
+<%= link_to destroy_user_session_path, method: :delete do %>
+  <% if user_signed_in?  %>
+    <li> Logout </li>
+  <% end %>
+<% end %>
+
+  <li> hello </li>
+  <li> hello </li>
+</ul>
