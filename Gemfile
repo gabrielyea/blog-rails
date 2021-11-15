@@ -4,6 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.0.2'
 
 gem 'bullet'
+gem 'devise'
 gem 'faker'
 gem 'htmlbeautifier'
 gem 'rails-controller-testing'
