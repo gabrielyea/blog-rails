@@ -16,6 +16,7 @@
         <% post.send(callback).each do |c| %>
           <li>
             <%= c.text %>
+            <%= render 'shared/delete_comment', comment: c, post: post %>
           </li>
         <% end %>
         </ul>
