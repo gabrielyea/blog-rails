@@ -1,5 +1,10 @@
 <ul class="navBar">
-
+<% if current_user.nil?%>
+<p> No user </p>
+<% else  %>
+<p>Current user: </p>
+<%= current_user.name %>
+<% end %>
 <%= link_to users_path do %>
     <li> All users </li>
 <% end %>
