@@ -1,0 +1,49 @@
+.signup,
+.login,
+.edit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 5rem;
+
+  form {
+    box-shadow: 10px 10px 10px rgb(221, 221, 221);
+    margin: 1rem;
+    border-radius: 20px;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+  }
+}
+
+.notice {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(147, 253, 133);
+  animation: fadeout forwards 2s;
+}
+
+.alert {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(253, 171, 133);
+  animation: fadeout forwards 2s;
+}
+
+@keyframes fadeout {
+  0% {
+    filter: opacity(1);
+  }
+
+  50% {
+    filter: opacity(0.5);
+  }
+
+  100% {
+    filter: opacity(0);
+  }
+}

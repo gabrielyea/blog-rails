@@ -1,0 +1,27 @@
+<ul class="navBar">
+<% if current_user.nil?%>
+<p> No user </p>
+<% else  %>
+<p>Current user: </p>
+<%= current_user.name %>
+<% end %>
+<%= link_to users_path do %>
+    <li> All users </li>
+<% end %>
+
+<%= link_to new_user_registration_path do %>
+  <% unless user_signed_in?  %>
+    <li> Login </li>
+  <% end %>
+<% end %>
+
+<%= link_to destroy_user_session_path, method: :delete do %>
+  <% if user_signed_in?  %>
+    <li> Logout </li>
+  <% end %>
+<% end %>
+
+<%= link_to new_path do %>
+    <li> New post </li>
+<% end %>
+</ul>
