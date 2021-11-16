@@ -1,3 +1,4 @@
+<section class='signup'>
 <h2>Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -6,6 +7,11 @@
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
+  </div>
+
+    <div class="field">
+    <%= f.label :bio %><br />
+    <%= f.text_area :bio %>
   </div>
 
   <div class="field">
@@ -32,3 +38,4 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+</section>
