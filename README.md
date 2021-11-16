@@ -12,7 +12,8 @@ To get a local copy up and running follow these simple example steps.
 - Copy this code : ```git clone <this repo>```
 - Run the program with this code : ```bundle install```
 - Before running ```rails server``` you must run a few more commands: first run ```yarn install --check-files```
-- Run `rails db:setup` This will seed the database.
+- Run `rails db:setup` 
+- Run `rails db:migrate` 
 - Stop the program with: "Ctrl + C" (Windows or Linux) or "Command + C"(Apple)
 
 ## Open app in browser
