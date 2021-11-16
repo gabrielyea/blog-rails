@@ -53,6 +53,6 @@ RSpec.describe Post, type: :model do
     Post.create(title: 'title', text: 'text', author_id: @user.id, comments_counter: 0, likes_counter: 0)
     @user.posts.new(title: 'title', text: 'text', author_id: @user.id, comments_counter: 0, likes_counter: 0).save
 
-    expect(@user.posts.length).to be(3)
+    expect(@user.posts.length).to be(1)
   end
 end
