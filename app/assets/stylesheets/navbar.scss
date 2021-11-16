@@ -1,0 +1,11 @@
+.navBar {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
+  height: 50px;
+  gap: 2em;
+  padding: 1em;
+  box-shadow: 10px 10px 10px rgb(209, 209, 209);
+}
