@@ -15,4 +15,10 @@ class CommentsController < ApplicationController
       render :new
     end
   end
+
+  def destroy
+    p 'JASDJFAJASDFJAJNAJFJAJr'
+    p params
+    # redirect_to root
+  end
 end

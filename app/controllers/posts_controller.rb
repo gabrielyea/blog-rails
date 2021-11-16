@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  # load_and_authorize_resource
   before_action :authenticate_user!, only: %i[new create delete]
 
   def index
@@ -29,5 +30,11 @@ class PostsController < ApplicationController
       flash[:error] = @post.errors.full_messages[0]
       redirect_to new_path
     end
+  end
+
+  def destroy
+    post = Post.find(params[:id])
+    post.destroy
+    redirect_to root_path
   end
 end
