@@ -2,7 +2,6 @@
   <%= render 'shared/user_card', user: @user %>
   <%= render 'shared/post_card', post: @post, callback: :show_all%>
   <%= render 'shared/add_comment' %>
-  <%= render 'shared/delete_post' %>
   <% flash.each do |type, message| %>
     <div class="notification"> <%= message %> </div>
   <% end %>
