@@ -6,10 +6,11 @@ class CommentsController < ApplicationController
     @comment = @user.comments.new((params.require(:comment).permit(:text)))
     @comment.author_id = @user.id
     @comment.post_id = params[:post_id]
+    post = Post.find(params[:post_id])
 
     if @comment.save
       flash[:notice] = 'Comment saved!'
-      redirect_to user_post_path(@user, Post.find(params[:post_id]))
+      redirect_to user_post_path(user_id: params[:user_id], id: post)
     else
       flash[:error] = @comment.errors.messages
       render :new
@@ -17,8 +18,9 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    p 'JASDJFAJASDFJAJNAJFJAJr'
-    p params
-    # redirect_to root
+    post = Post.find(params[:post_id])
+    comment = post.comments.find(params[:id])
+    comment.destroy
+    redirect_to user_post_path(user_id: params[:user_id], id: post)
   end
 end

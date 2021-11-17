@@ -9,7 +9,7 @@ class PostsController < ApplicationController
 
   def show
     @user = User.find(params[:user_id])
-    @post = @user.posts.find(params[:id])
+    @post = Post.find(params[:id])
   end
 
   def new
@@ -19,6 +19,7 @@ class PostsController < ApplicationController
 
   def create
     cu = current_user
+    @post_user = User.find(params[:user_id])
     @post = cu.posts.new(params.require(:post).permit(:title, :text))
     @post.comments_counter = 0
     @post.likes_counter = 0
