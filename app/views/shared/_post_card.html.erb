@@ -16,9 +16,10 @@
         <ul class="comment-list">
         <% post.send(callback).each do |c| %>
           <li>
-          <p> Author </p>
+          <h4> Author </h4>
+
             <%= c.author.name %>
-          <p> Comment </p>
+          <h5> Comment </h5>
             <%= c.text %>
             <%= render 'shared/delete_comment', comment: c, post: post %>
           </li>
