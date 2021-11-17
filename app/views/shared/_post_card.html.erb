@@ -1,4 +1,5 @@
   <div class="post">
+    <%= render 'shared/delete_post' %>
     <p>
       <%= post.title %>
     </p>
@@ -12,10 +13,15 @@
          <%= render 'shared/add_like', post: post %>
       </div>
       <% if post.comments.count > 0 %>
-        <ul>
+        <ul class="comment-list">
         <% post.send(callback).each do |c| %>
           <li>
+          <h4> Author </h4>
+
+            <%= c.author.name %>
+          <h5> Comment </h5>
             <%= c.text %>
+            <%= render 'shared/delete_comment', comment: c, post: post %>
           </li>
         <% end %>
         </ul>

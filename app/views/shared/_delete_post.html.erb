@@ -1,0 +1,5 @@
+<% unless @post.nil? %>
+   <div class="delete-btn">
+      <%= button_to "Delete Post", user_post_path(user_id: @user, id: @post), method: :delete if can? :destroy, @post%>
+   </div>
+<% end %>

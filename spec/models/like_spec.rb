@@ -16,6 +16,6 @@ RSpec.describe Like, type: :model do
 
   it 'update_likes_counter method' do
     @post.likes.new(author_id: @user.id, post_id: @post.id).save
-    expect(@post.likes_counter).to be(2)
+    expect(@post.likes_counter).to be(1)
   end
 end

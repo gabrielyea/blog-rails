@@ -1,0 +1,3 @@
+<div class="delete-btn">
+   <%= button_to "Delete Comment", user_post_comment_path(user_id: @user ,post_id: post, id: comment) , method: :delete if can? :destroy, comment %>
+</div>
