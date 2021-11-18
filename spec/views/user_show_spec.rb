@@ -1,73 +1,36 @@
-require 'rails_helper'
+RSpec.describe 'Show User page', type: :feature do
+  before :each do
+    @user = User.new(name: 'test name',
+                     email: 'hotmail@gmail.com',
+                     bio: 'bla bla bla bla',
+                     password: 'password',
+                     password_confirmation: 'password',
+                     post_counter: 0)
+    @user.skip_confirmation!
+    @user.save!
+    @post1 = Post.create(title: 'article 1', text: 'My text', author_id: @user.id, comments_counter: 0,
+                         likes_counter: 0)
+    @comment1 = Comment.create(text: 'My comment', author_id: @user.id, post_id: @post1.id)
+    visit(users_path(@user, @post1))
+  end
 
-RSpec.describe 'Blog App', type: :feature do
-  describe 'user show page' do
-    before :all do
-      user = User.new(
-        email: 'admin@gmail.com',
-        bio: 'Richie is my partner',
-        password: 'password',
-        password_confirmation: 'password',
-        name: 'Admin',
-        role: 'admin'
-      )
-      user.skip_confirmation!
-      user.save!
-
-      (1..3).each do |id|
-        Post.create(
-          id: id,
-          author_id: 1,
-          title: "Richie' Post #{id}",
-          text: 'Richie was here. The Richie',
-          comments_counter: 0,
-          likes_counter: 0
-        )
-      end
+  describe 'index page' do
+    it 'shows the user img' do
+      expect(page).to have_css('img', class: 'userImg')
     end
 
-    it "user_path show an user's picture" do
-      visit user_path(1)
-      expect(page).to have_css('img', class: 'img_profile')
+    it 'render the user name' do
+      expect(page).to have_content('test name')
     end
 
-    it 'user_path show name of users' do
-      visit user_path(1)
-      expect(page).to have_content('Admin')
+    it 'shows the correct post count' do
+      expect(page).to have_content('Number of posts 1')
     end
 
-    it "user_path show the correct user's post_counter" do
-      visit user_path(1)
-      expect(page).to have_content('3')
-    end
-
-    it "user_path show the correct user's bio" do
-      visit user_path(1)
-      expect(page).to have_content('Richie is my partner')
-    end
-
-    it 'user_path shows the 3 recent posts' do
-      visit user_path(1)
-      expect(page).to have_content("Richie' Post 1")
-      expect(page).to have_content("Richie' Post 2")
-      expect(page).to have_content("Richie' Post 3")
-    end
-
-    it "When I click on a user, I am redirected to that user's show page." do
-      visit user_path(1)
-      expect(has_link?('See all posts')).to be(true)
-    end
-
-    it "When I click a user's post, it redirects me to that post's show page." do
-      visit user_path(1)
-      click_link("Richie' Post 1")
-      expect(page).to have_current_path(user_post_path(1, 1))
-    end
-
-    it "When I click to see all posts, it redirects me to the user's post's index page." do
-      visit user_path(1)
-      click_link('See all posts')
-      expect(page).to have_current_path(user_posts_path(1))
+    it 'redirects to the correct post' do
+      visit user_post_path(@user, @post1)
+      first(:link, 'Show Post').click
+      assert_current_path(user_post_path(@user, @post1))
     end
   end
 end

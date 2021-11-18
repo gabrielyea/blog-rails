@@ -1,81 +1,54 @@
-require 'rails_helper'
+RSpec.describe 'Index page', type: :feature do
+  before :each do
+    @user = User.new(name: 'test name',
+                     email: 'hotmail@gmail.com',
+                     bio: 'bla bla bla bla',
+                     password: 'password',
+                     password_confirmation: 'password',
+                     post_counter: 0)
+    @user.skip_confirmation!
+    @user.save!
+    @post1 = Post.create(title: 'article 1', text: 'My text', author_id: @user.id, comments_counter: 0,
+                         likes_counter: 0)
+    @post2 = Post.create(title: 'article 2', text: 'My text', author_id: @user.id, comments_counter: 0,
+                         likes_counter: 0)
+    @post3 = Post.create(title: 'article 3', text: 'My text', author_id: @user.id, comments_counter: 0,
+                         likes_counter: 0)
+    @post4 = Post.create(title: 'article 4', text: 'My text', author_id: @user.id, comments_counter: 0,
+                         likes_counter: 0)
 
-RSpec.describe 'Blog App', type: :feature do
-  describe 'post index page' do
-    before :all do
-      user = User.new(
-        email: 'admin@gmail.com',
-        bio: 'Richie is my partner',
-        password: 'password',
-        password_confirmation: 'password',
-        name: 'Admin',
-        role: 'admin'
-      )
-      user.skip_confirmation!
-      user.save!
+    @comment1 = Comment.create(text: 'My comment', author_id: @user.id, post_id: @post2.id)
+    visit(user_posts_path(@user))
+  end
 
-      Post.create(
-        id: 1,
-        author_id: 1,
-        title: "Richie' Post 1",
-        text: 'Richie was here. The Richie 1',
-        comments_counter: 0,
-        likes_counter: 0
-      )
-
-      Comment.create(
-        author_id: 1,
-        post_id: 1,
-        text: 'Capybaras are cool'
-      )
-
-      Comment.create(
-        author_id: 1,
-        post_id: 1,
-        text: 'Capybaras are bad'
-      )
+  describe 'index page' do
+    it 'shows the user img' do
+      expect(page).to have_css('img', class: 'userImg')
+    end
+    it 'render the user name' do
+      expect(page).to have_content('test name')
     end
 
-    it "user_posts_path show an user's picture" do
-      visit user_posts_path(1)
-      expect(page).to have_css('img', class: 'img_profile')
+    it 'shows the correct post count' do
+      expect(page).to have_content('Number of posts 4')
     end
 
-    it 'user_posts_path show name of users' do
-      visit user_posts_path(1)
-      expect(page).to have_content('Admin')
+    it 'has the correct title' do
+      expect(page).to have_content(@post2.title)
     end
 
-    it "user_posts_path show the correct user's post_counter" do
-      visit user_posts_path(1)
-      expect(page).to have_content('1')
+    it 'has the correct text' do
+      expect(page).to have_content(@post2.text)
     end
 
-    it 'user_posts_path shows the recent posts' do
-      visit user_posts_path(1)
-      expect(page).to have_content("Richie' Post 1")
+    it 'has te correct comment' do
+      expect(page).to have_content(@comment1.text)
     end
 
-    it 'user_posts_path shows the comments' do
-      visit user_posts_path(1)
-      expect(page).to have_content('Capybaras are cool')
-      expect(page).to have_content('Capybaras are bad')
-    end
-
-    it 'user_posts_path shows the comments counter' do
-      visit user_posts_path(1)
-      expect(page).to have_content('2')
-    end
-
-    it 'user_posts_path shows the likes counter' do
-      visit user_posts_path(1)
-      expect(page).to have_content('0')
-    end
-
-    it "When I click on a post, it redirects me to that post's show page." do
-      visit user_posts_path(1)
-      click_link("Richie' Post 1")
-      expect(page).to have_current_path(user_post_path(1, 1))
+    it 'redirects to the correct post' do
+      visit user_posts_path(@user)
+      first(:link, 'Show Post').click
+      assert_current_path(user_post_path(@user, @post1))
     end
   end
 end

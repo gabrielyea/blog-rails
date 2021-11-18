@@ -1,87 +1,47 @@
-require 'rails_helper'
+RSpec.describe 'Post Show page', type: :feature do
+  before :each do
+    @user = User.new(name: 'test name',
+                     email: 'hotmail@gmail.com',
+                     bio: 'bla bla bla bla',
+                     password: 'password',
+                     password_confirmation: 'password',
+                     post_counter: 0)
+    @user.skip_confirmation!
+    @user.save!
+    @post1 = Post.create(title: 'article 1', text: 'My text', author_id: @user.id, comments_counter: 0,
+                         likes_counter: 0)
+    @comment1 = Comment.create(text: 'My comment', author_id: @user.id, post_id: @post1.id)
+    visit(user_post_path(@user, @post1))
+  end
 
-RSpec.describe 'Blog App', type: :feature do
-  describe 'post show page' do
-    before :all do
-      user = User.new(
-        email: 'admin@gmail.com',
-        bio: 'Richie is my partner',
-        password: 'password',
-        password_confirmation: 'password',
-        name: 'Admin',
-        role: 'admin'
-      )
-      user.skip_confirmation!
-      user.save!
-
-      user = User.new(
-        email: 'fulano@gmail.com',
-        bio: 'Fulano is my name',
-        password: 'password',
-        password_confirmation: 'password',
-        name: 'Fulano',
-        role: 'default'
-      )
-      user.skip_confirmation!
-      user.save!
-
-      Post.create(
-        id: 1,
-        author_id: 1,
-        title: "Richie' Post 1",
-        text: 'Richie was here. The Richie 1',
-        comments_counter: 0,
-        likes_counter: 0
-      )
-
-      Comment.create(
-        author_id: 1,
-        post_id: 1,
-        text: 'Capybaras are cool'
-      )
-
-      Comment.create(
-        author_id: 2,
-        post_id: 1,
-        text: 'Capybaras are bad'
-      )
+  describe 'index page' do
+    it 'shows the user img' do
+      expect(page).to have_css('img', class: 'userImg')
+    end
+    it 'render the user name' do
+      expect(page).to have_content('test name')
     end
 
-    it "I can see the post's title." do
-      visit user_post_path(1, 1)
-      expect(page).to have_content("Richie' Post 1")
+    it 'shows the correct post count' do
+      expect(page).to have_content('Number of posts 1')
     end
 
-    it 'I can see who wrote the post.' do
-      visit user_post_path(1, 1)
-      expect(page).to have_content('Admin')
+    it 'has the correct title' do
+      expect(page).to have_content(@post1.title)
     end
 
-    it 'I can see how many comments it has.' do
-      visit user_post_path(1, 1)
-      expect(page).to have_content('2')
+    it 'has the correct text' do
+      expect(page).to have_content(@post1.text)
     end
 
-    it 'I can see how many likes it has.' do
-      visit user_post_path(1, 1)
-      expect(page).to have_content('0')
+    it 'has te correct comment' do
+      expect(page).to have_content(@comment1.text)
     end
 
-    it 'I can see the post body.' do
-      visit user_post_path(1, 1)
-      expect(page).to have_content('Richie was here. The Richie 1')
-    end
-
-    it 'I can see the username of each commentor.' do
-      visit user_post_path(1, 1)
-      expect(page).to have_content('Admin:')
-      expect(page).to have_content('Fulano:')
-    end
-
-    it 'I can see the comment each commentor left.' do
-      visit user_post_path(1, 1)
-      expect(page).to have_content('Capybaras are cool')
-      expect(page).to have_content('Capybaras are bad')
+    it 'redirects to the correct post' do
+      visit user_posts_path(@user)
+      first(:link, 'Show Post').click
+      assert_current_path(user_post_path(@user, @post1))
     end
   end
 end

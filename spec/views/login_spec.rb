@@ -4,7 +4,7 @@ RSpec.describe 'Blog App', type: :feature do
   describe 'login page' do
     before :all do
       user = User.new(
-        email: 'admin@gmail.com',
+        email: 'oli@gmail.com',
         password: 'password',
         password_confirmation: 'password',
         name: 'Admin',
@@ -40,7 +40,7 @@ RSpec.describe 'Blog App', type: :feature do
     it 'new_user_session_path redirect to root_path if receive right information' do
       visit new_user_session_path
       within('#new_user') do
-        fill_in 'Email', with: 'admin@gmail.com'
+        fill_in 'Email', with: 'oli@gmail.com'
         fill_in 'Password', with: 'password'
       end
       click_button 'Log in'

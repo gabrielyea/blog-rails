@@ -1,47 +1,36 @@
-require 'rails_helper'
+RSpec.describe 'Index User page', type: :feature do
+  before :each do
+    @user = User.new(name: 'test name',
+                     email: 'hotmail@gmail.com',
+                     bio: 'bla bla bla bla',
+                     password: 'password',
+                     password_confirmation: 'password',
+                     post_counter: 0)
+    @user.skip_confirmation!
+    @user.save!
+    @post1 = Post.create(title: 'article 1', text: 'My text', author_id: @user.id, comments_counter: 0,
+                         likes_counter: 0)
+    @comment1 = Comment.create(text: 'My comment', author_id: @user.id, post_id: @post1.id)
+    visit(users_path(@user, @post1))
+  end
 
-RSpec.describe 'Blog App', type: :feature do
-  describe 'user index page' do
-    before :all do
-      user = User.new(
-        email: 'admin@gmail.com',
-        password: 'password',
-        password_confirmation: 'password',
-        name: 'Admin',
-        role: 'admin'
-      )
-      user.skip_confirmation!
-      user.save!
-
-      Post.create(
-        id: 1,
-        author_id: 1,
-        title: "Richie' Post",
-        text: 'Richie was here. The Richie',
-        comments_counter: 0,
-        likes_counter: 0
-      )
+  describe 'index page' do
+    it 'shows the user img' do
+      expect(page).to have_css('img', class: 'userImg')
     end
 
-    it 'users_path show name of users' do
-      visit users_path
-      expect(page).to have_content('Admin')
+    it 'render the user name' do
+      expect(page).to have_content('test name')
     end
 
-    it "users_path show an user's picture" do
-      visit users_path
-      expect(page).to have_css('img', class: 'img_profile')
+    it 'shows the correct post count' do
+      expect(page).to have_content('Number of posts 1')
     end
 
-    it "users_path show the correct user's post_counter" do
-      visit users_path
-      expect(page).to have_content('1')
-    end
-
-    it "When I click on a user, I am redirected to that user's show page." do
-      visit users_path
-      click_link('See profile')
-      expect(page).to have_current_path(user_path(1))
+    it 'redirects to the correct post' do
+      visit user_posts_path(@user)
+      first(:link, 'Show Post').click
+      assert_current_path(user_post_path(@user, @post1))
     end
   end
 end
