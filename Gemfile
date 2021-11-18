@@ -3,8 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.2'
 
-gem 'bullet'
+# gem 'bullet'
 gem 'cancancan'
+gem 'database_cleaner'
 gem 'devise'
 gem 'faker'
 gem 'htmlbeautifier'
