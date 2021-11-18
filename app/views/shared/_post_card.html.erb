@@ -26,4 +26,7 @@
         <% end %>
         </ul>
       <% end %>
+      <%= link_to (user_post_path(post.author, post)) do %>
+        Show Post
+      <%end%>
   </div>

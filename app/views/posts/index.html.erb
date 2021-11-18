@@ -2,12 +2,10 @@
   <ul class="postsList">
    <%= render 'shared/user_card', user: @user %>
       <% @post.each do |p| %>
-        <%= link_to (user_post_path(p.author, p)) do %>
           <li>
-            <%= render 'shared/post_card', post: p, callback: :take_five_recent %>
+              <%= render 'shared/post_card', post: p, callback: :take_five_recent %>
           </li>
         <% end %>
-      <%end%>
   </ul>
    <%= button_to "Go back", user_path(@user.id), :method => :get %>
 </section>
