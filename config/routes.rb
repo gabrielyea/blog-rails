@@ -13,9 +13,9 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     post 'login', to: 'authentication#authenticate'
     post 'signup', to: 'users#create'
-    resources :users do
-      resources :posts do
-        resources :comments
+    resources :users, only: %i[create show index] do
+      resources :posts, only: %i[index show] do
+        resources :comments, only: %i[create, index]
       end
     end
   end

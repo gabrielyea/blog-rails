@@ -8,6 +8,7 @@ gem 'cancancan'
 gem 'devise'
 gem 'faker'
 gem 'jwt'
+gem 'rswag'
 gem 'rswag-api'
 gem 'rswag-ui'
 # beutifies files
