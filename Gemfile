@@ -5,9 +5,10 @@ ruby '3.0.2'
 
 # gem 'bullet'
 gem 'cancancan'
-gem 'database_cleaner'
 gem 'devise'
 gem 'faker'
+gem 'jwt'
+# beutifies files
 gem 'htmlbeautifier'
 gem 'rails-controller-testing'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
@@ -56,7 +57,10 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 3.26'
+  gem 'database_cleaner'
+  gem 'factory_bot_rails', '~> 4.0'
   gem 'selenium-webdriver'
+  gem 'shoulda-matchers', '~> 3.1'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
 end
