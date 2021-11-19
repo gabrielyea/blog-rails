@@ -5,9 +5,13 @@ ruby '3.0.2'
 
 # gem 'bullet'
 gem 'cancancan'
-gem 'database_cleaner'
 gem 'devise'
 gem 'faker'
+gem 'jwt'
+gem 'rswag'
+gem 'rswag-api'
+gem 'rswag-ui'
+# beutifies files
 gem 'htmlbeautifier'
 gem 'rails-controller-testing'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
@@ -40,6 +44,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'rspec-rails', '~> 5.0.0'
+  gem 'rswag-specs'
 end
 
 group :development do
@@ -56,7 +61,10 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 3.26'
+  gem 'database_cleaner'
+  gem 'factory_bot_rails', '~> 4.0'
   gem 'selenium-webdriver'
+  gem 'shoulda-matchers', '~> 3.1'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
 end
