@@ -1,12 +1,9 @@
 require 'swagger_helper'
 
 RSpec.describe 'api/users', type: :request do
-
   path '/api/signup' do
-
     post('create user') do
       response(200, 'successful') do
-
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -20,10 +17,8 @@ RSpec.describe 'api/users', type: :request do
   end
 
   path '/api/users' do
-
     get('list users') do
       response(200, 'successful') do
-
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -37,7 +32,6 @@ RSpec.describe 'api/users', type: :request do
 
     post('create user') do
       response(200, 'successful') do
-
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -51,10 +45,8 @@ RSpec.describe 'api/users', type: :request do
   end
 
   path '/api/users/new' do
-
     get('new user') do
       response(200, 'successful') do
-
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
